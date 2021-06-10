@@ -1,0 +1,381 @@
+
+#include "TheRest.h"
+
+#include "MonstersGrail.h"
+#include "KnightsGrail.h"
+#include <iostream>
+#include <fstream>
+#include <vector>
+
+using namespace std;
+
+KnightTraits :: KnightTraits() //Default Constructor
+{
+    power = "";
+    powerlevel = 0;
+
+};
+
+KnightTraits :: KnightTraits(string _power,int _powerlevel)//Load in powername and powerlevel
+{
+    power = _power;
+    powerlevel = _powerlevel;
+};
+
+string KnightTraits :: getPower()
+{
+    return(power);
+}
+int KnightTraits :: getPowerlevel()
+{
+    return(powerlevel);
+}
+void KnightTraits :: setPower(string _power)
+{
+    power = _power;
+}
+void KnightTraits :: setPowerlevel(int _powerlevel)
+{
+    powerlevel = _powerlevel;
+}
+//Finished setters and getters for Knight Traits Class
+
+
+
+
+
+Knights :: Knights()
+{
+    name = "";
+    health = 0;
+    insanity =0;
+    trait = KnightTraits();//Knight traits object within Knights class
+    
+    
+}
+Knights :: Knights(string newname, int _health,int _insanity,KnightTraits newtrait)//Trait as object of KnightTraits
+{
+    name = newname;
+    health = _health;
+    insanity = _insanity;
+    trait = newtrait;
+}
+void Knights :: setName(string _name){
+    name = _name;
+}
+string Knights :: getName(){
+    return(name);
+}
+int Knights :: getHealth()
+{
+    return(health);
+}
+int Knights :: getInsanity()
+{
+    return(insanity);
+}
+void Knights :: setHealth(int _health)
+{
+    health = _health;
+}
+void Knights :: setInsanity(int _insanity)
+{
+    insanity = _insanity;
+}
+void Knights :: setNewTrait(KnightTraits newtrait)
+{
+    trait = newtrait;
+}
+void Knights :: setTraitPower(int newpowlevel)
+{
+    trait.setPowerlevel(newpowlevel);
+}
+int Knights :: getTraitPower()
+{
+    trait.getPowerlevel();
+}
+
+
+
+
+MonsterTraits :: MonsterTraits()
+{
+    traitname = "";
+    traitpower = 0;
+}
+MonsterTraits :: MonsterTraits(string _traitname,int _traitpower)
+{
+    traitname = _traitname;
+    traitpower = _traitpower;
+}
+string MonsterTraits :: getTraitname()
+{
+    return(traitname);
+}
+void MonsterTraits :: setTraitname(string newname)
+{
+    traitname = newname;
+}
+int MonsterTraits :: getTraitpower()
+{
+    return(traitpower);
+}
+void MonsterTraits :: setTraitpower(int newpower)
+{
+    traitpower = newpower;
+}
+
+
+Monsters :: Monsters()
+{
+    health = 0;
+    rage =0;
+    trait = MonsterTraits();//Similar format for Monster traits. Since monster traits and monsters are both conributing to Monsters Class, they can be considered to be one.
+}
+Monsters :: Monsters(int newhealth,int newrage, MonsterTraits newtrait)
+{
+    health = newhealth;
+    rage =newrage;
+    trait = newtrait;
+}
+int Monsters :: getHealth()
+{
+    return(health);
+}
+void Monsters :: setHealth(int _health)
+{
+    health = _health;
+}
+int Monsters :: getRage()
+{
+    return(rage);
+}
+void Monsters :: setRage(int _rage)
+{
+    rage = _rage;
+}
+void Monsters :: setNewtrait(MonsterTraits newtrait)
+{
+    trait = newtrait;
+}
+void Monsters :: setTraitpower(int newpower)
+{
+    trait.setTraitpower(newpower);
+}
+int Monsters :: getTraitpower()
+{
+    trait.getTraitpower();
+}
+string Monsters :: getName(){
+    return(name.getTraitname());
+}
+
+
+
+
+
+
+
+TheBlackKnight :: TheBlackKnight()
+{
+    health = 0;
+    fear = 0;
+    strength = 0;
+    
+}
+TheBlackKnight :: TheBlackKnight(int _health,int _fear, int _strength)
+{
+    health = _health;
+    fear = _fear;
+    strength = _strength;
+    
+}
+void TheBlackKnight :: setHealth(int newhealth){
+    health = newhealth;
+}
+void TheBlackKnight :: setStrength(int newstregnth){
+    strength = newstregnth;
+}
+void TheBlackKnight :: setFear(int newfear){
+    fear = newfear;
+}
+int TheBlackKnight :: getStrength()
+{
+    return(strength);
+}
+int TheBlackKnight :: getFear()
+{
+    return(fear);
+}
+int TheBlackKnight :: getHealth()
+{
+    return(health);
+}
+
+
+
+BridgeofDeath :: BridgeofDeath()
+{
+    cunning =0;
+}
+BridgeofDeath :: BridgeofDeath(int _cunning)
+{
+    cunning = _cunning;
+}
+int BridgeofDeath :: getCunning()
+{
+    return(cunning);
+}
+void BridgeofDeath :: setCunning(int newcunning)
+{
+    cunning = newcunning;
+}
+
+
+FurryRabbit :: FurryRabbit()
+{
+    agility = 0;
+    health = 0;
+    cutenessindex = 0;
+}
+FurryRabbit :: FurryRabbit(int _agility,int _cutenessindex, int _health)
+{
+    agility = _agility;
+    health = _health;
+    cutenessindex = _cutenessindex;
+}
+void FurryRabbit :: setAgility(int newagility)
+{
+    agility = newagility;
+}
+void FurryRabbit :: setcutenessindex(int newcute)
+{
+    cutenessindex = newcute;
+}
+int FurryRabbit :: getAgility()
+{
+    return(agility);
+}
+int FurryRabbit :: getcutenessindex()
+{
+    return(cutenessindex);
+}
+int FurryRabbit :: getHealth(){
+    return(health);
+}
+void FurryRabbit :: setHealth(int newhealth){
+    health = newhealth;
+}
+
+
+
+
+
+
+
+FarmAnimals :: FarmAnimals()
+{
+    stupidityindex = 0;
+    name = "";
+    flingabilityindex = 0;
+}
+FarmAnimals :: FarmAnimals(int newdumb, string newname,int newfling)
+{
+    stupidityindex = newdumb;
+    name = newname;
+    flingabilityindex = newfling;
+}
+int FarmAnimals :: getFlingabilityindex()
+{
+    return(flingabilityindex);
+}
+int FarmAnimals :: getStupidityindex()
+{
+    return(stupidityindex);
+}
+void FarmAnimals :: setFlingabilityindex(int _fling)
+{
+    flingabilityindex = _fling;
+}
+void FarmAnimals :: setStupidityindex(int _stup)
+{
+    stupidityindex = _stup;
+}
+string FarmAnimals :: getName()
+{
+    return(name);
+}
+void FarmAnimals :: setName(string newname)
+{
+    name = newname;
+}
+
+FrenchSoldiers :: FrenchSoldiers()
+{
+    for(int i =0; i < 5;i++)
+    {
+        animal[i] = FarmAnimals();//Loading arraw of farm animal objects
+    }
+    Bipolarindex =0;
+    sexualfrustrationindex = 0;
+}
+FrenchSoldiers :: FrenchSoldiers(FarmAnimals _animals[], int newhealth, int _bipolarindex, int sexindex)
+{
+    for(int i =0;i < 5;i++)
+    {
+        animal[i] = _animals[i];
+    }
+    health = newhealth;
+    Bipolarindex = _bipolarindex;
+    sexualfrustrationindex = sexindex;
+}
+string FrenchSoldiers :: getAnimal()
+{
+    for(int i = 0; i <5;i++)
+    {
+        FarmAnimals string = animal[i];
+        cout << "This soldier has one " << string.getName() << endl;
+    }
+
+}
+FarmAnimals FrenchSoldiers :: throwanimal(int chooseanimal){
+    FarmAnimals spawnedanimal;
+    spawnedanimal = animal[chooseanimal];
+    return(spawnedanimal);
+}
+void FrenchSoldiers :: setAnimal(FarmAnimals animalss[])
+{
+    for(int i; i <5;i++)
+    {
+        animal[i] = animalss[i];
+    }
+
+}
+int FrenchSoldiers :: getBipolarindex()
+{
+    return(Bipolarindex);
+}
+void FrenchSoldiers :: setBipolarindex(int newindex)
+{
+    Bipolarindex = newindex;
+}
+void FrenchSoldiers :: setSexualfrustrationindex(int newsex)
+{
+    sexualfrustrationindex = newsex;
+}
+int FrenchSoldiers :: getSexualfrustrationindex()
+{
+    return(sexualfrustrationindex);
+}
+int FrenchSoldiers :: getHealth(){
+    return(health);
+}
+void FrenchSoldiers :: setHealth(int newhealth){
+    health = newhealth;
+}
+
+void SpinyTheHedgehog :: getDeath()
+{
+    cout << "HE IS COMING FOR YOU" << endl;
+}
+
