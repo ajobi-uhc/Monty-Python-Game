@@ -1,0 +1,50 @@
+#ifndef KNIGHTSGRAIL_H
+#define KNIGHTSGRAIL_H
+
+#include <iostream>
+
+using namespace std;
+
+class KnightTraits
+{
+    private:
+    string power;
+    int powerlevel;
+
+    public:
+    KnightTraits();
+    KnightTraits(string,int);
+    string getPower();
+    void setPower(string);
+    int getPowerlevel();
+    void setPowerlevel(int);
+
+
+
+};
+class Knights
+{
+    private:
+    string name;
+    int health;
+    int insanity;
+    KnightTraits trait;
+   
+
+    public:
+    Knights();
+    Knights(string,int,int,KnightTraits);
+    void setName(string);
+    string getName();
+    int getHealth();
+    void setHealth(int);
+    int getInsanity();
+    void setInsanity(int);
+    void setNewTrait(KnightTraits);
+    void setTraitPower(int);
+    int getTraitPower();
+};
+#endif
+
+
+
