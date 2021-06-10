@@ -1,0 +1,114 @@
+#ifndef THEREST_H
+#define THEREST_H
+
+#include <iostream>
+
+using namespace std;
+class TheBlackKnight
+{
+    private:
+    int health;
+    int fear;
+    int strength;
+    
+
+    public:
+    TheBlackKnight();
+    TheBlackKnight(int,int,int);
+    int getHealth();
+    void setHealth(int);
+    int getFear();
+    void setFear(int);
+    int getStrength();
+    void setStrength(int);
+    string getWeapon();
+    
+
+    
+
+};
+
+class BridgeofDeath
+{
+    private:
+    int cunning;
+    
+
+    public:
+    BridgeofDeath();
+    BridgeofDeath(int);
+    int getCunning();
+    void setCunning(int);
+
+
+};
+class FurryRabbit
+{   private:
+    int agility;
+    int cutenessindex;
+    int health;
+
+    public:
+    FurryRabbit();
+    FurryRabbit(int,int,int);
+    int getAgility();
+    void setAgility(int);
+    int getcutenessindex();
+    void setcutenessindex(int);
+    int getHealth();
+    void setHealth(int);
+
+};
+
+class FarmAnimals
+{
+    private:
+    int stupidityindex;
+    string name;
+    int flingabilityindex;
+
+    public:
+    FarmAnimals();
+    FarmAnimals(int,string,int);
+    int getStupidityindex();
+    void setStupidityindex(int);
+    int getFlingabilityindex();
+    void setFlingabilityindex(int);
+    string getName();
+    void setName(string);
+};
+class FrenchSoldiers
+{
+    private:
+    static const int ammo = 5;
+    int health;
+    FarmAnimals animal[ammo];
+    int Bipolarindex;
+    int sexualfrustrationindex;
+    
+    public:
+    FrenchSoldiers();
+    FrenchSoldiers(FarmAnimals arr[],int,int,int);
+    string getAnimal();
+    FarmAnimals throwanimal(int);
+    void setAnimal(FarmAnimals arr[]);
+    int getBipolarindex();
+    void setBipolarindex(int);
+    int getSexualfrustrationindex();
+    void setSexualfrustrationindex(int);
+    int getHealth();
+    void setHealth(int);
+
+
+
+};
+class SpinyTheHedgehog
+{
+    private:
+    static const int death;
+
+    public:
+    void getDeath();
+   
+};
+#endif
