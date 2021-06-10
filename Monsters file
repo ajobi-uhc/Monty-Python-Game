@@ -1,0 +1,48 @@
+#ifndef MONSTERSGRAIL_H
+#define MONSTERSGRAIL_H
+
+#include <iostream>
+
+using namespace std;
+
+class MonsterTraits
+{
+    private:
+    string traitname;
+    int traitpower;
+
+    public:
+    MonsterTraits();
+    MonsterTraits(string,int);
+    string getTraitname();
+    void setTraitname(string);
+    int getTraitpower();
+    void setTraitpower(int);
+    
+
+};
+class Monsters
+{
+    private:
+    MonsterTraits name; // monster traits trait and name 
+    int health;
+    int rage;
+    MonsterTraits trait;
+    
+
+    public:
+    Monsters();
+    Monsters(int,int,MonsterTraits);
+    int getHealth();
+    void setHealth(int);
+    int getRage();
+    void setRage(int);
+   void setNewtrait(MonsterTraits);
+   int getTraitpower();
+   void setTraitpower(int);
+   string getName();
+   
+
+
+};
+#endif
