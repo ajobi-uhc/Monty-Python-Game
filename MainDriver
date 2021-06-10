@@ -1,0 +1,695 @@
+
+#include "TheRest.h"
+#include "MonstersGrail.h"
+#include "KnightsGrail.h"
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <cmath>
+void Spinyhasarrived(){//Randomly generated monster that haunts the knights. Better hope he doesnt spawn.
+    cout << "Spiny does not approve your hair" << endl;
+    cout << "goodbye" << endl;
+    exit(0);
+}  
+int generateRandom(int r)//Simple generate random function
+{   
+    int p = rand() % r;
+    
+    return(p);
+}
+int split(string input,char delimiter,string storage[],int storagesize)
+{
+    string tempstorage = "";
+    string truestorage = "";
+    int p = input.length();
+    int k = tempstorage.length();
+    int counter = 0;
+    
+    
+if(input == "")
+{
+    return(0);
+}
+
+    for(int i = 0;i < p;i++)
+    {   
+        if(input[i] != delimiter) //As long as the char is not the delimiter, the input is stored in tempstorage.
+        {
+            tempstorage += input[i];
+            
+        }
+        if(input[i] == delimiter) // storing tempstorage in the main storage array when i hits a delimiter.
+        {
+           
+            storage[counter] = tempstorage;
+             counter++;
+            tempstorage = truestorage;
+        }
+        if(counter >= storagesize)
+        {
+            return(-1);
+        }
+        if(k == p)
+        {
+            storage[0] = tempstorage;
+        }
+    
+    }
+    
+    storage[counter] = tempstorage;
+    counter++;
+    return(counter);
+}
+int Randombadstuff(Knights chosenman){//Random stuff that happens based on values of a randomly generated int
+    bool p;
+    int answerplease;
+     int k= generateRandom(8);
+
+    if(k == 0){
+        
+        Spinyhasarrived();
+
+    }
+    else if(k == 1 || k == 3 || k== 4){
+        cout << "Is life meaningless and if so how do you assert meaning in your own life" << endl;
+            cout << "1. I live life like a dance" << endl;
+            cout << "2. Love everyone equally, That's your answer" << endl;
+            cout << "3. It's meaningless mate go drink a beer" << endl;
+        cin >> answerplease;
+    if(answerplease == 1 || answerplease == 2){
+        cout << "Cute, have some regen" << endl;
+        chosenman.setHealth(chosenman.getHealth()+40);
+        cout << chosenman.getName() << " new health is " << chosenman.getHealth() << endl;
+
+    }
+    else if(answerplease == 3){
+        cout << "Ooooh I like you here have some extra health regen" << endl;
+        chosenman.setHealth(chosenman.getHealth()+100);
+        cout << chosenman.getName() << " new health is " << chosenman.getHealth() << endl;
+        
+    }
+    }
+    else if( k ==2){
+        cout << "You slipped and died" << endl;
+        p =0;
+        exit(0);
+    }
+}
+void foodfunction(Knights KnightsChosen){//Menu based food function that takes in inputs for food and executes the food but dependent on the choice also executes randombadstff()
+    int foodchoice;
+    int c;
+    int k;
+    cout << "You are very fat and get hungry" << endl;
+    cout << "The wild offers a very exquisite menu:" << endl;
+    cout << "Be careful with you choice" << endl;
+    cout << "1. Fried squirrel eggs" << endl;
+    cout << "2. John Cleese's lovely liver" << endl;
+    cout << "3. A scrumptious blood steak" << endl;
+    
+
+    cin >> foodchoice;
+    switch (foodchoice)
+    {
+    case 1:
+        cout << "Eh boring choice" << endl;
+        c =KnightsChosen.getHealth();
+        KnightsChosen.setHealth(c+5);
+        k = KnightsChosen.getTraitPower();
+        KnightsChosen.setTraitPower(k+5);
+        cout << "Your new health is " << KnightsChosen.getHealth() << endl;
+
+        break;
+    case 2:
+        cout << "WOW im jealous" << endl;
+          c =KnightsChosen.getHealth();
+        KnightsChosen.setHealth(c+30);
+        k = KnightsChosen.getTraitPower();
+        KnightsChosen.setTraitPower(k+20);
+        cout << "Your new health is " << KnightsChosen.getHealth() << endl;
+    break;
+    case 3:
+        cout << "Whoops bad choice" << endl;
+          
+        KnightsChosen.setHealth(40);
+        KnightsChosen.setTraitPower(0);
+        cout << "Your new health is " << KnightsChosen.getHealth() << endl;
+        break;
+    default:
+    while(foodchoice != 1 || foodchoice != 2 || foodchoice != 3){
+         cout << "Do try again apparently you cant follow simple logic" << endl;
+    cin >> foodchoice;
+    if(foodchoice == 1 || foodchoice ==2 || foodchoice == 3){
+        break;
+    }
+    }
+   
+       
+}
+}
+void BridgeOfDeath(KnightTraits trait, Knights chosenman){//Menu based function that uses exit(0) function within it
+    cout << "You approach an insidious looking bridge" << endl;
+string newname;
+int quest;
+int swallow;
+    cout << "" << endl;
+    cout << "" << endl;
+
+    cout << "A very short yet serious looking man stands blocking your path" << endl;
+
+    BridgeofDeath bridgeman = BridgeofDeath(10);
+    cout << "the bridgekeeper starts asking you questions" << endl;
+    // cout << "WHAT is your name" << endl;
+    // cout << "Sir Cleese" << endl;
+    // cout << "Sir Chapman" << endl;
+    // cout << "Sir Palin" << endl;
+    // cout << "Sir Idle" << endl;
+    // cout << "" << endl;
+    // cout << "type in the full name" << endl;
+    // cin >> newname;
+    if(chosenman.getHealth() > 0)
+    {
+        bridgeman.setCunning(10 + generateRandom(10));
+        cout << "WHAT is your quest" << endl;
+        cout << "1. To find and kill a turtle to wear it's shell as a hat" << endl;
+        cout << "2. To just enjoy life man" << endl;
+        cout << "3. The answer to your question is 48" << endl;
+        cout << "4. To find the Holy Grail" << endl;
+        cin >> quest;
+        if(quest == 4){
+            bridgeman.setCunning(bridgeman.getCunning() + generateRandom(60));
+            cout << "WHAT is the air speed velocity of an unlaiden swallow?" << endl;
+            cout << "1. Exactly 365km/hr during peak migration season" << endl;
+            cout << "2. I will be honest. I don't know" << endl;
+            cout << "3. Which one, African or American?" << endl;
+            cin >> swallow;
+            if(swallow == 3){
+                cout << "I don't know that!" << endl;
+                if(bridgeman.getCunning() < 60){
+                    cout << "Well done! you have passed" << endl;
+                }
+                else{
+                    cout << "I'm gonna kill you anyways" << endl;
+                    exit(0);
+                }
+                
+            }
+            else{
+                cout << "Death for you WRONG" << endl;
+                exit(0);
+            }
+        
+        }
+        else{
+            cout << "WROOONG cya" << endl;
+            exit(0);
+        }
+    }
+    else{
+        cout << "WRONG goodbye" << endl;
+        exit(0);
+    }
+
+
+}
+string MonsterFight(KnightTraits trait, Knights chosenman)//Monster fight with file IO and then under a while loop executes the fight itself with recurring menu that asks if user wants to quit
+
+{
+    string monsterstxt = "monsters.txt";
+    ifstream monstersfile;
+    string currentline;
+    string tempstorage[2];
+    string monstaname[10];
+    string monstapower[10];
+    string verdict;
+    int chosenone = generateRandom(10);
+    monstersfile.open(monsterstxt);//Starting file IO
+    int i =0;
+    bool quitbattle;
+     while(getline(monstersfile,currentline))
+    {
+        split(currentline,',',tempstorage,2);
+        monstaname[i] = tempstorage[0];
+        monstapower[i] = tempstorage[1];//Loading the attributes in array
+        i++;
+    }
+    string monstername = monstaname[chosenone];//Loading each into seperate string and int
+    int monsterpowerlevel = stoi(monstapower[chosenone]);
+    MonsterTraits chosentrait = MonsterTraits(monstername,monsterpowerlevel);//Using parametrized constructor to form Monsters object
+    Monsters arrival = Monsters(100,0,chosentrait);
+    i = 0;
+    
+
+    cout << "Here, fight " << arrival.getName() << endl;
+    cout << chosenman.getName() << " is fighting " << arrival.getName() << endl;
+    
+    while(chosenman.getHealth() > 0 && arrival.getHealth() > 0)
+    {
+        cout << chosentrait.getTraitname() << " pokes " << chosenman.getName() << endl;
+        chosenman.setHealth(chosenman.getHealth() - generateRandom(i+1+arrival.getRage()));
+        cout << chosenman.getName() << " is now on "  << chosenman.getHealth() << endl;
+        cout << chosenman.getName() << " hits " << chosentrait.getTraitname() << endl;
+        arrival.setHealth(arrival.getHealth()-generateRandom(80+chosenman.getTraitPower()));
+        cout << chosentrait.getTraitname() << " is now on " << arrival.getHealth() << endl;
+        if(chosenman.getHealth() >0){
+             cout << "Do you want to quit the battle and give up " << trait.getPower() << " regen? Answer 1 for no and 0 for yes" << endl;
+        cin >> quitbattle;//Allowing for user input so While loop doesn't execute
+        }
+       
+        if(quitbattle == 0)
+        {
+            cout << "You have quit the battle" << endl;
+            break;//break out of loop
+        }
+        chosenman.setTraitPower(10+i);
+        chosenman.setInsanity(i);
+        arrival.setRage(10+2*i); //powering up monster and chosenman for every execution of while loop
+        i = i+10;
+
+
+    }
+    if(chosenman.getHealth() <= 0)
+    {
+        verdict = "lost";
+        cout << "You have lost" << endl;
+        exit(0);
+        
+        
+    }
+    else{
+        verdict = "won";
+        cout << "You WON" << endl;
+    }
+   
+    return(verdict);
+    
+    
+
+
+}
+int BlackKnightFight(KnightTraits trait, Knights chosenman){//Blackknight is a seperate class with unique trait fear factor, utilizes while loop for fight
+    bool verdict;
+    int i =0;
+    int quitbattle;
+
+    cout << "You encounter a dangerous man in the wild" << endl;
+    
+    cout << "The Black Knight blocks your path to the Holy Grail" << endl;
+    
+    TheBlackKnight knightarrived = TheBlackKnight(100,20,40);
+
+    while(chosenman.getHealth() > 0 && knightarrived.getHealth() > 0)
+    {
+        cout << "The Black Knight" << " pokes " << chosenman.getName() << endl;
+        chosenman.setHealth(chosenman.getHealth() - generateRandom(i+knightarrived.getStrength()+knightarrived.getFear()));
+        cout << "The Black Knight uses his fear factor" << endl;
+        cout << chosenman.getName() << " is now on "  << chosenman.getHealth() << endl;
+        cout << chosenman.getName() << " hits " << " the Black Knight" << endl;
+        knightarrived.setHealth((knightarrived.getHealth()-generateRandom(100+chosenman.getTraitPower())));
+        cout << "The Black Knight" << " is now on " << knightarrived.getHealth() << endl;
+        if(knightarrived.getHealth()>0 && chosenman.getHealth()>0){
+            cout << "Do you want to quit the battle and give up regen? Answer 1 for no and 0 for yes" << endl;
+            cin >> quitbattle;
+        }
+        
+        if(quitbattle == 0)
+        {
+            cout << "You have quit the battle" << endl;
+            break;
+        }
+        chosenman.setTraitPower(5+i);
+        chosenman.setInsanity(i);
+        knightarrived.setStrength(20+2*i);
+        i = i+5;
+
+
+    }
+    if(chosenman.getHealth() <= 0)
+    {
+        verdict = "lost";
+        cout << "You have lost" << endl;
+        exit(0);
+        
+        
+    }
+    else{
+        verdict = "won";
+        
+    }
+
+    return(verdict);
+
+}
+void FrenchSoldierfight(KnightTraits trait, Knights chosenman){//Loads an array of FarmAnimal objects and throws them
+    int answerfrench;
+    
+    cout << "A strange castle appears in front of you" << endl;
+    cout << "" << endl;
+    cout << "Some very strange men seem to be taunting you" << endl;
+
+    cout << "You quickly realize that they are French" << endl;
+
+    cout << "Please answer the following riddle" << endl;
+    cout << "Why did the French have so many civil wars?" << endl;
+    cout << "1. Because they went through mutiple periods of recessions" << endl;
+    cout << "" << endl;
+    cout << "2. Because they had to fight the Germans causing great economic unrest" << endl;
+    cout << "" << endl;
+    cout << "3. So they can win one very now and again." << endl;
+
+    cin >> answerfrench;
+    if(answerfrench == 1){
+        cout << "Wrong" << endl;
+        cout << "I'll give you another try" << endl;
+        cout << "Why did the French have so many civil wars?" << endl;
+    cout << "1. Because they went through mutiple periods of recessions" << endl;
+    cout << "" << endl;
+    cout << "2. Because they had to fight the Germans causing great economic unrest" << endl;
+    cout << "" << endl;
+    cout << "3. So they can win one very now and again." << endl;
+    cin >> answerfrench;
+    if(answerfrench != 3)
+    {
+      cout <<  "Alright I've had it" << endl;
+    }
+        Randombadstuff(chosenman);
+
+
+    }
+    else if(answerfrench == 2){
+        cout << "Boring" << endl;
+            cout << "I'll give you another try" << endl;
+        cout << "Why did the French have so many civil wars?" << endl;
+    cout << "1. Because they went through mutiple periods of recessions" << endl;
+    cout << "" << endl;
+    cout << "2. Because they had to fight the Germans causing great economic unrest" << endl;
+    cout << "" << endl;
+    cout << "3. So they can win one very now and again." << endl;
+    cin >> answerfrench;
+    if(answerfrench != 3)
+    {
+      cout <<  "Alright I've had it" << endl;
+    }
+        Randombadstuff(chosenman);
+    }
+    else if(answerfrench == 3){
+        cout << "I like you" << endl;
+        cout << "Have some food" << endl;
+        foodfunction(chosenman);
+    }
+
+    //Starting File IO
+    string currentline;
+    ifstream farmanimalfile;
+    string thetext = "FarmAnimals.txt";
+    farmanimalfile.open(thetext);
+    string temparr[3];
+    
+    FarmAnimals ammoanimals[10];
+    FarmAnimals realammo[5];
+    int k;
+
+ int j =0;
+    while(getline(farmanimalfile,currentline)){
+        FarmAnimals actualanimal = FarmAnimals();
+        split(currentline,',',temparr,3);
+       
+            actualanimal.setName(temparr[0]);
+            actualanimal.setFlingabilityindex(stoi(temparr[1]));
+            actualanimal.setStupidityindex(stoi(temparr[2]));
+            ammoanimals[j] = actualanimal;
+           
+        j++;
+        
+    }//Loaded each animal and traits into one object and put the animal into an array of animal objects
+    
+    for(int i =0; i < 5;i++){
+        k = generateRandom(10);
+        realammo[i] = ammoanimals[k];
+    }
+
+    //Choosing random animals and loading them into the ammo array for french soldiers to use
+    cout << "The frenchmans have been angered by your insult" << endl;
+    FrenchSoldiers newsoldier = FrenchSoldiers(realammo,100,10,100);//Loading that array into french soldier object
+    cout << "" << endl;
+    cout << "" << endl;
+    cout << "" << endl;
+
+    cout << "And so it begins" << endl;
+    FarmAnimals thrownanimal;
+    int guess;
+    string verdict;
+    bool quit = 0;
+    
+ while(chosenman.getHealth() > 0 && newsoldier.getHealth() > 0)
+    {
+        if(quit == 1){
+            break;
+        }
+        cout << "Avoid the FARM Animals" << endl;
+        for(int p = 0; p <5;p++){
+            thrownanimal = newsoldier.throwanimal(generateRandom(5));
+            cout << "A vicious " << thrownanimal.getName() << " is barelling towards you" << endl;
+            cout << "Guess how stupid it is" << endl;
+            cin >> guess;
+            cout << "Do you want to quit(1) or keep going(0)?" << endl;
+            cin >> quit;
+            if(quit == 1){
+                break;
+            }
+            if(guess < 2 + thrownanimal.getStupidityindex() && guess > thrownanimal.getStupidityindex()-2)//Checking if guess is within the range. 
+            {
+                cout << "nice guess" << endl;
+                newsoldier.setHealth(newsoldier.getHealth()-20);
+                cout << "The french soldiers health is " << newsoldier.getHealth() << endl;
+                if(newsoldier.getHealth() <=0){
+
+                    cout << "Congrats! You won" << endl;
+                    break;
+                }
+            }
+            else{
+                chosenman.setHealth(chosenman.getHealth() - thrownanimal.getFlingabilityindex());
+                cout << "You got slammed by a " << thrownanimal.getName() << endl;
+                chosenman.setHealth(chosenman.getHealth()-thrownanimal.getFlingabilityindex());
+                cout << chosenman.getName() <<" new health is " << chosenman.getHealth() << endl;
+                if(chosenman.getHealth() <= 0){
+                    cout << "you died" << endl;
+                    exit(0);
+                }
+            }
+
+        }
+        
+    }
+    if(chosenman.getHealth() <= 0)
+    {
+        verdict = "lost";
+        exit(0);
+        
+        
+    }
+    else{
+        verdict = "won";
+        chosenman.setTraitPower(chosenman.getTraitPower() + 20);
+        
+    }
+    
+}
+void TheFinalBoss(KnightTraits trait, Knights chosenman){//Final fight including activating knight special power and fight with final rabbit monster
+    cout << "Baby welcome to the party" << endl;
+    
+    MonsterFight(trait,chosenman);//Initiate a monster fight to have a mini fight
+    Randombadstuff(chosenman);
+   
+    cout << "Alright time for the real party" << endl;
+    cout << "there is a very big rabbit in front of you" << endl;
+    cout << "Be careful while approaching it" << endl;
+    int i =0;
+    bool activate;
+    
+    
+    if(chosenman.getTraitPower() > 0 && chosenman.getHealth() > 0){
+        FurryRabbit ready = FurryRabbit(30,50,200);
+        while(ready.getHealth() > 0 && chosenman.getHealth() > 0)
+    { 
+        
+        cout << "The Rabbit" << " pokes " << chosenman.getName() << endl;
+        chosenman.setHealth(chosenman.getHealth() - generateRandom(1+ready.getcutenessindex()+ready.getAgility()));
+        cout << chosenman.getName() << " is now on "  << chosenman.getHealth() << endl;
+        cout << chosenman.getName() << " hits " << "the rabbit" << endl;
+        ready.setHealth(ready.getHealth()-generateRandom(50+3*chosenman.getTraitPower()));
+        cout << "Rabbit " << " is now on " << ready.getHealth() << endl;
+        if(chosenman.getHealth() >0){
+             cout << "Do you want to activate your knight's unique trait " << trait.getPower() << " Answer 1 for no and 0 for yes" << endl;
+            cin >> activate;
+        }
+       
+        if(activate == 0)
+        {
+            
+            cout << "Get ready" << endl;
+            cout << "" << endl;
+            cout << "" << endl;
+            cout << chosenman.getName() << " activated his " << trait.getPower() << endl;
+            for(int p =0;p < chosenman.getTraitPower();p+=2)//Activating his power essentially doing flurry of damage onto rabbit
+            {
+                cout << chosenman.getName() << " uses his " << trait.getPower() << " on the rabbit" << endl;
+            ready.setHealth(ready.getHealth()-generateRandom((chosenman.getInsanity()+3)*chosenman.getTraitPower()));
+            cout << "Rabbit " << " is now on " << ready.getHealth() << endl;
+            }
+        }
+
+        chosenman.setTraitPower(10+i);
+        chosenman.setInsanity(i);
+        ready.setAgility(ready.getAgility() + i);
+        i = i+10;
+
+
+    }
+   
+    if(ready.getHealth()<=0 && chosenman.getHealth() <=0){
+        cout << "YOU HAVE KILLED THE RABBIT AND DIED" << endl;
+        cout << "That's a win in my book" << endl;
+    }
+    else if(ready.getHealth() <=0 && chosenman.getHealth()>=0){
+        cout << "Wow you are still alive" << endl;
+        cout << "Nice" << endl;
+    }
+    else{
+        cout << "Goodbye you lost" << endl;
+    }
+
+
+            
+
+    }
+}
+
+    
+
+
+
+
+
+int main()
+{
+    int Knightchosen;
+    cout << "Hi there! Welcome to my take on Monty Python: The Holy Grail" << endl;
+    cout << "If you like the game show your support my giving me a full grade! If not, Spiny the Hedgehog will deal with you :)" << endl;
+
+
+    cout << "Please select your knight:" << endl;//First menu function to choose knight each knight has special class attribute
+    cout << "1. Sir Michael Palin" << endl;
+    cout << "2. Sir John Cleese" << endl;
+    cout << "3. Sir Graham Chapman" << endl;
+    cout << "4. Sir Eric Idle" << endl;
+    cout << "5. Terry Gilliams" << endl;
+    cin >> Knightchosen;
+
+
+    switch (Knightchosen)
+    {
+    case 1:
+        cout << "Ah yes, I see you have taste. Sir Michael Palin's charm is really quite effective" << endl;
+        cout << "Now, for something completely different" << endl;
+
+        break;
+    case 2:
+        cout << "Now this one is my favorite. May Sir John Cleese scare away everyone including his own wife with his rage" << endl;
+        cout << "Anyway" << endl;
+    
+        break;
+    case 3:
+        cout << "Wow, the craziest of the bunch. Sir Graham does not enjoy any funny business now be careful!" << endl;
+        cout << "This is getting rather silly for me now" << endl;
+        break;
+
+    case 4:
+        cout << "Eh fine he likes guitar. Good at killing cattle using sarcasm" << endl;
+        cout << "Always look on the bright side of liife" << endl;
+        break;
+        
+    case 5:
+        cout << "I dont like your animations. Goodbye Terry" << endl;
+        break;
+    default:
+        cout << "You are smarter than this choose a number ya dummy" << endl;
+        break;
+    }
+
+Knights KnightMade;
+KnightTraits newknighttrait;//Loading all knights and starting a monster fight at the start of game
+if(Knightchosen == 1)
+{
+    newknighttrait = KnightTraits("Charm",2);
+     KnightMade = Knights("Sir Palin", 80, 0,newknighttrait);
+     cout << generateRandom(90) << endl;
+    MonsterFight(newknighttrait,KnightMade);
+
+    cout << "The brave Sir Palin continues his heroic journey" << endl;
+}
+else if(Knightchosen == 2)
+{
+    newknighttrait = KnightTraits("Anger",5);
+    KnightMade = Knights("Sir Cleese",100,0,newknighttrait);
+    MonsterFight(newknighttrait, KnightMade);
+
+}
+else if(Knightchosen == 3)
+{
+     newknighttrait = KnightTraits("Seriousness",20);
+     KnightMade = Knights("Sir Chapman",60,0,newknighttrait);
+    MonsterFight(newknighttrait, KnightMade);
+
+}
+else if(Knightchosen == 4)
+{
+     newknighttrait = KnightTraits("Sarcasm",5);
+     KnightMade = Knights("Sir Idle",80,0,newknighttrait);
+    MonsterFight(newknighttrait, KnightMade);
+
+}
+else if(Knightchosen == 5)
+{
+    return(0);
+}
+
+cout << "The brave " << KnightMade.getName() << "continues his journey" << endl;
+foodfunction(KnightMade);
+Randombadstuff(KnightMade);
+BlackKnightFight(newknighttrait,KnightMade);
+foodfunction(KnightMade);
+
+cout << "" << endl;
+cout << "" << endl;
+cout << "You really are getting quite far" << endl;
+FrenchSoldierfight(newknighttrait,KnightMade);
+
+cout << "Wow how is this happening" << endl;
+
+BridgeOfDeath(newknighttrait,KnightMade);
+foodfunction(KnightMade);
+Randombadstuff(KnightMade);
+TheFinalBoss(newknighttrait,KnightMade);
+
+cout << "Thank's for playing my play on Monty Python's The Holy Grail" << endl;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    
+    
+    
+
+    
